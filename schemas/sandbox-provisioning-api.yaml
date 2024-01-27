@@ -1,0 +1,187 @@
+openapi: 3.0.1
+info:
+  title: Sandbox User Provisioning
+  description: 'Sandbox User Provisioning '
+  version: '1.0'
+servers:
+  - url: https://sandbox.momodeveloper.mtn.com
+paths:
+  /v1_0/apiuser:
+    post:
+      summary: /apiuser - POST
+      description: Used to create an API user in the sandbox target environment.
+      operationId: post-v1_0-apiuser
+      parameters:
+        - name: X-Reference-Id
+          in: header
+          description: Format - UUID. Recource ID for the API user to be created. UUID version 4 is required.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiUser'
+            example:
+              providerCallbackHost: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json: { }
+        '400':
+          description: 'Bad request, e.g. invalid data was sent in the request.'
+          content:
+            application/json: { }
+        '409':
+          description: 'Conflict, duplicated reference id'
+          content:
+            ReferenceId already in use:
+              schema:
+                $ref: '#/components/schemas/ErrorReason'
+              example:
+                code: RESOURCE_ALREADY_EXIST
+                message: Duplicated reference id. Creation of resource failed.
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorReason'
+              example:
+                code: RESOURCE_NOT_FOUND
+                message: string
+        '500':
+          description: Internal error. Check log for information.
+          content:
+            application/json: { }
+  '/v1_0/apiuser/{X-Reference-Id}/apikey':
+    post:
+      summary: '/v1_0/apiuser/{X-Reference-Id}/apikey - POST'
+      description: Used to create an API key for an API user in the sandbox target environment.
+      operationId: post-v1_0-apiuser-apikey
+      parameters:
+        - name: X-Reference-Id
+          in: path
+          description: Format - UUID. Recource ID for the API user to be created. UUID version 4 is required.
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiUserKeyResult'
+              example:
+                apiKey: string
+        '400':
+          description: 'Bad request, e.g. invalid data was sent in the request.'
+          content:
+            application/json: { }
+        '404':
+          description: 'Not found, reference id not found or closed in sandbox'
+          content:
+            Requested resource was not found:
+              schema:
+                $ref: '#/components/schemas/ErrorReason'
+              example:
+                code: RESOURCE_NOT_FOUND
+                message: Requested resource was not found.
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorReason'
+              example:
+                code: RESOURCE_NOT_FOUND
+                message: string
+        '500':
+          description: Internal error. Check log for information.
+          content:
+            application/json: { }
+  '/v1_0/apiuser/{X-Reference-Id}':
+    get:
+      summary: '/v1_0/apiuser/{X-Reference-Id} - GET'
+      description: Used to get API user information.
+      operationId: get-v1_0-apiuser
+      parameters:
+        - name: X-Reference-Id
+          in: path
+          description: Format - UUID. Recource ID for the API user to be created. UUID version 4 is required.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ok
+        '400':
+          description: 'Bad request, e.g. invalid data was sent in the request.'
+        '404':
+          description: 'Not found, reference id not found or closed in sandbox'
+          content:
+            Requested resource was not found:
+              schema:
+                $ref: '#/components/schemas/ErrorReason'
+              example:
+                code: RESOURCE_NOT_FOUND
+                message: Requested resource was not found.
+        '500':
+          description: Internal error. Check log for information.
+components:
+  schemas:
+    ApiUser:
+      type: object
+      properties:
+        providerCallbackHost:
+          type: string
+          description: The provider callback host
+      description: The create API user information
+    ApiUserResult:
+      type: object
+      properties:
+        providerCallbackHost:
+          type: string
+          description: The provider callback host
+        paymentServerUrl:
+          $ref: '#/components/schemas/PaymentServerUrl'
+        targetEnvironment:
+          $ref: '#/components/schemas/TargetEnvironment'
+      description: The API user information
+    ApiUserKeyResult:
+      type: object
+      properties:
+        apiKey:
+          type: string
+          description: The created API user key
+    PaymentServerUrl:
+      type: object
+      properties:
+        apiKey:
+          type: string
+          description: The payment server URL
+    TargetEnvironment:
+      type: object
+      properties:
+        apiKey:
+          type: string
+          description: The target environment
+    ErrorReason:
+      type: object
+      properties:
+        code:
+          enum:
+            - RESOURCE_NOT_FOUND
+            - RESOURCE_ALREADY_EXIST
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
