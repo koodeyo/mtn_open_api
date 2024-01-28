@@ -1,0 +1,35 @@
+# Mtn Open Api
+Explore seamless integration with MTN Open API using this Ruby gem. For in-depth information, refer to the official documentation at [https://momodeveloper.mtn.com/](https://momodeveloper.mtn.com/).
+
+## Key Features
+- **Full API Availability:** Access a comprehensive set of API endpoints, providing developers with a versatile toolkit to address a wide range of scenarios. The gem's commitment to inclusivity ensures that all necessary API endpoints are readily available for integration.
+
+- **Robust Testing:** Every endpoint is rigorously tested to ensure reliability and stability. By adhering to best practices in testing, the `Mtn Open Api` gem delivers a dependable solution that developers can trust for their projects.
+
+- **Intuitive Conversion:** Experience a seamless transition from JSON responses to structured `OpenStruct` objects, providing a more Ruby-like interface for effortless interaction.
+
+- **Comprehensive Documentation:** All methods are thoroughly documented, ensuring that developers have access to clear and concise information on the functionality and usage of each feature. This commitment to documentation enhances the gem's usability and simplifies the integration process.
+
+## Installation
+
+Install the gem and add to the application's Gemfile by executing:
+
+    $ bundle add mtn_open_api
+
+If bundler is not being used to manage dependencies, install the gem by executing:
+
+    $ gem install mtn_open_api
+
+## Usage
+
+TODO: Write usage instructions here
+
+## Development
+
+After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/koodeyo/mtn_open_api.
