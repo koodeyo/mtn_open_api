@@ -55,8 +55,6 @@ extra_headers = {
 }
 
 response = sandboxprovisioningapi.postV10Apiuser(params, extra_headers)
-
-puts response
 ```
 #### Methods
 - [postV10Apiuser](https://momodeveloper.mtn.com/API-collections#api=sandbox-provisioning-api&operation=post-v1_0-apiuser) Used to create an API user in the sandbox target environment.
@@ -104,8 +102,6 @@ extra_headers = {
 }
 
 response = collection.requesttoPay(params, extra_headers)
-
-puts response
 ```
 #### Methods
 - [getAccountBalance](https://momodeveloper.mtn.com/API-collections#api=collection&operation=GetAccountBalance) Get the balance of own account.
@@ -160,8 +156,6 @@ params = "login_hint=ID:{msisdn}/MSISDN&scope={scope}&access_type={online/offlin
 extra_headers = {}
 
 response = disbursement.bcAuthorize(params, extra_headers)
-
-puts response
 ```
 #### Methods
 - [getAccountBalance](https://momodeveloper.mtn.com/API-collections#api=disbursement&operation=GetAccountBalance) Get the balance of own account.
@@ -222,8 +216,6 @@ extra_headers = {
 }
 
 response = remittance.transfer(params, extra_headers)
-
-puts response
 ```
 #### Methods
 - [getAccountBalance](https://momodeveloper.mtn.com/API-collections#api=remittance&operation=GetAccountBalance) Get the balance of own account.
