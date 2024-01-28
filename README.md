@@ -1,10 +1,10 @@
-# MtnOpenApi
+# Mtn Open Api
 Explore seamless integration with MTN Open API using this Ruby gem. For in-depth information, refer to the official documentation at [https://momodeveloper.mtn.com/](https://momodeveloper.mtn.com/).
 
 ## Key Features
 - **Full API Availability:** Access a comprehensive set of API endpoints, providing developers with a versatile toolkit to address a wide range of scenarios. The gem's commitment to inclusivity ensures that all necessary API endpoints are readily available for integration.
 
-- **Robust Testing:** Every endpoint is rigorously tested to ensure reliability and stability. By adhering to best practices in testing, the `MtnOpenApi` gem delivers a dependable solution that developers can trust for their projects.
+- **Robust Testing:** Every endpoint is rigorously tested to ensure reliability and stability. By adhering to best practices in testing, the `Mtn Open Api` gem delivers a dependable solution that developers can trust for their projects.
 
 - **Intuitive Conversion:** Experience a seamless transition from JSON responses to structured `OpenStruct` objects, providing a more Ruby-like interface for effortless interaction.
 
