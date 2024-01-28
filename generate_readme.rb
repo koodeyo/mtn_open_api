@@ -39,6 +39,7 @@ def api_docs
 
     default_base_url = content["servers"].first['url']
     instance_name = namespace.downcase
+    module_name = "MtnOpenApi"
 
     # Get sample request
     sample_method = get_sample_method(paths) || get_sample_method(paths, "get")
@@ -52,15 +53,24 @@ def api_docs
     params_prefix_surfix = "#{!sample_json ? '"': ""}"
 
     # Headers
-    sample_common_headers = ["X-Target-Environment", "Authorization", "X-Callback-Url", "Ocp-Apim-Subscription-Key"]
+    sample_common_headers = ["Authorization", "X-Callback-Url", "X-Target-Environment", "Ocp-Apim-Subscription-Key"]
     formatted_common_headers = JSON.pretty_generate(arr_to_h(sample_common_headers))
     extra_headers = sample_headers - sample_common_headers
 
-    # Formattig document starts here
-    output += "## #{namespace}\n"
-    output += "#{info["description"]}\n"
+    # Formattig document
+    # Class documenting
+    output += "## #{module_name}::#{namespace}\n"
+    output += "#{info["description"]}\n\n"
+    output += "This class provides a convenient interface for making requests to the MTN MoMo `#{api}` API.\n"
+    output += "#### Initialization\n"
+    output += "You can initialize it with the following parameters:\n"
+    output +="
+- `base_url` (optional): The base URL for the MTN MoMo `#{api}` API. If not provided, the default value is #{default_base_url}.
+- `headers` (optional): A hash of HTTP headers to be included in the API requests.
+- `schema` (optional): A hash representing the API schema. If not provided, the gem will use the default schema, which is already included in the gem. You can also download the schema from [https://momodeveloper.mtn.com/API-collections#api=#{api}](https://momodeveloper.mtn.com/API-collections#api=#{api}).
+    "
 
-    output += "\nExample
+    output += "\n#### Example
 ```ruby
 common_headers = #{formatted_common_headers}
 
@@ -73,12 +83,10 @@ params = #{params_prefix_surfix}#{ sample_json ? JSON.pretty_generate(sample_jso
 extra_headers = #{JSON.send(extra_headers.size > 0 ? :pretty_generate : :dump, arr_to_h(sample_headers - sample_common_headers))}
 
 response = #{instance_name}.#{MtnOpenApi.to_camel_case(sample_method['operationId'])}(params, extra_headers)
-
-puts response # {'statusCode': 401, 'message': 'Access denied due to missing subscription key...' }
 ```"
 
     output += "\n"
-    output += "### Methods\n"
+    output += "#### Methods\n"
 
     paths.each do |path, methods|
       methods.each do |http_method, details|

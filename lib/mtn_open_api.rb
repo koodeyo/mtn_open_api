@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
+require 'uri'
 require "yaml"
 require 'json'
+require 'ostruct'
 require 'net/http'
-require 'uri'
 require 'json-schema'
 require_relative "mtn_open_api/version"
 
@@ -37,7 +38,7 @@ module MtnOpenApi
         content: MtnOpenApi.load_schema("disbursement")
       },
       {
-        api: 'sandbox-provisioning-api',
+        api: 'remittance',
         namespace: "Remittance",
         content: MtnOpenApi.load_schema("remittance")
       }
@@ -146,9 +147,9 @@ module MtnOpenApi
         response = http.request(request)
 
         begin
-          JSON.parse(response.body)
+          JSON.parse(response.body, object_class: OpenStruct)
         rescue
-          { "statusCode" => response.code.to_i, "message" => response.body }
+          OpenStruct.new(statusCode: response.code.to_i, message: response.body)
         end
       end
 
