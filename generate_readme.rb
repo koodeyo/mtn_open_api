@@ -18,13 +18,7 @@ def get_sample_method(paths, method_name = "post")
 end
 
 def arr_to_h(arr)
-  result = {}
-
-  arr.each_with_index do |key, index|
-    result[key] = "value-#{index}"
-  end
-
-  result
+  arr.to_h {|key| [key, "string"]}
 end
 
 def api_docs

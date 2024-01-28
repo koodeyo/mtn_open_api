@@ -36,10 +36,10 @@ You can initialize it with the following parameters:
 #### Example
 ```ruby
 common_headers = {
-  "Authorization": "value-0",
-  "X-Callback-Url": "value-1",
-  "X-Target-Environment": "value-2",
-  "Ocp-Apim-Subscription-Key": "value-3"
+  "Authorization": "string",
+  "X-Callback-Url": "string",
+  "X-Target-Environment": "string",
+  "Ocp-Apim-Subscription-Key": "string"
 }
 
 sandboxprovisioningapi = MtnOpenApi::SandboxProvisioningApi.new(
@@ -51,7 +51,7 @@ params = {
 }
 
 extra_headers = {
-  "X-Reference-Id": "value-0"
+  "X-Reference-Id": "string"
 }
 
 response = sandboxprovisioningapi.postV10Apiuser(params, extra_headers)
@@ -75,10 +75,10 @@ You can initialize it with the following parameters:
 #### Example
 ```ruby
 common_headers = {
-  "Authorization": "value-0",
-  "X-Callback-Url": "value-1",
-  "X-Target-Environment": "value-2",
-  "Ocp-Apim-Subscription-Key": "value-3"
+  "Authorization": "string",
+  "X-Callback-Url": "string",
+  "X-Target-Environment": "string",
+  "Ocp-Apim-Subscription-Key": "string"
 }
 
 collection = MtnOpenApi::Collection.new(
@@ -98,7 +98,7 @@ params = {
 }
 
 extra_headers = {
-  "X-Reference-Id": "value-0"
+  "X-Reference-Id": "string"
 }
 
 response = collection.requesttoPay(params, extra_headers)
@@ -141,10 +141,10 @@ You can initialize it with the following parameters:
 #### Example
 ```ruby
 common_headers = {
-  "Authorization": "value-0",
-  "X-Callback-Url": "value-1",
-  "X-Target-Environment": "value-2",
-  "Ocp-Apim-Subscription-Key": "value-3"
+  "Authorization": "string",
+  "X-Callback-Url": "string",
+  "X-Target-Environment": "string",
+  "Ocp-Apim-Subscription-Key": "string"
 }
 
 disbursement = MtnOpenApi::Disbursement.new(
@@ -189,10 +189,10 @@ You can initialize it with the following parameters:
 #### Example
 ```ruby
 common_headers = {
-  "Authorization": "value-0",
-  "X-Callback-Url": "value-1",
-  "X-Target-Environment": "value-2",
-  "Ocp-Apim-Subscription-Key": "value-3"
+  "Authorization": "string",
+  "X-Callback-Url": "string",
+  "X-Target-Environment": "string",
+  "Ocp-Apim-Subscription-Key": "string"
 }
 
 remittance = MtnOpenApi::Remittance.new(
@@ -212,7 +212,7 @@ params = {
 }
 
 extra_headers = {
-  "X-Reference-Id": "value-0"
+  "X-Reference-Id": "string"
 }
 
 response = remittance.transfer(params, extra_headers)
