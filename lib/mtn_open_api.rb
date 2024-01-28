@@ -46,8 +46,9 @@ module MtnOpenApi
   end
 
   def self.load_schema(filename)
-    YAML.load(File.read("schemas/#{filename}.yaml"))
-  rescue
+    gem_root = Gem::Specification.find_by_name(NAME).gem_dir
+    yaml_path = File.expand_path("schemas/#{filename}.yaml", gem_root)
+    YAML.load(File.read(yaml_path))
   end
 
   # Dynamically define classes based on schemas

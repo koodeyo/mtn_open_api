@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
 module MtnOpenApi
-  VERSION = "3.0.0"
+  VERSION = "0.0.1"
+  NAME = 'mtn_open_api'
 end
