@@ -54,7 +54,7 @@ RSpec.describe MtnOpenApi do
                 params[key] = "value-#{index}"
               end
 
-              response = subject.public_send(method_name, params:, headers:)
+              response = subject.public_send(method_name, params, headers)
               expect(response['statusCode']).to eq(401)
               expect(response['message']).to include("Access denied due to missing subscription key.")
             end

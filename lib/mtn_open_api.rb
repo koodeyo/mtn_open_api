@@ -22,20 +22,24 @@ module MtnOpenApi
   def self.schemas
     [
       {
+        api: 'sandbox-provisioning-api',
+        namespace: "SandboxProvisioningApi",
+        content: MtnOpenApi.load_schema("sandbox-provisioning-api")
+      },
+      {
+        api: "collection",
         namespace: 'Collection',
         content: MtnOpenApi.load_schema("collection")
       },
       {
+        api: "disbursement",
         namespace: "Disbursement",
         content: MtnOpenApi.load_schema("disbursement")
       },
       {
+        api: 'sandbox-provisioning-api',
         namespace: "Remittance",
         content: MtnOpenApi.load_schema("remittance")
-      },
-      {
-        namespace: "SandboxProvisioningApi",
-        content: MtnOpenApi.load_schema("sandbox-provisioning-api")
       }
     ]
   end
@@ -56,9 +60,9 @@ module MtnOpenApi
     class_content = Class.new do
       attr_reader :base_url, :common_headers
 
-      define_method(:initialize) do |schema: content, base_url: default_base_url, common_headers: {}|
+      define_method(:initialize) do |schema: content, base_url: default_base_url, headers: {}|
         @base_url = URI.parse(base_url)
-        @common_headers = common_headers
+        @common_headers = headers
 
         # Define methods
         define_methods(content)
@@ -72,7 +76,7 @@ module MtnOpenApi
             operationId = details['operationId'] || "#{http_method} #{path}"
             # Remove non-word characters (including "-") and convert to camel case
             method_name = MtnOpenApi.to_camel_case(operationId)
-            define_singleton_method(method_name) do |params: {}, headers: {}|
+            define_singleton_method(method_name) do |params = {}, headers = {}|
               headers = common_headers.merge(headers)
               validate_parameters(http_method, path, headers, params, details)
               make_request(http_method, path, headers, params)
