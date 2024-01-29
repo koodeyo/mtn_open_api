@@ -27,7 +27,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-## MtnOpenApi::SandboxProvisioningApi
+## MtnOpenApi::SandboxProvisioning
 Sandbox User Provisioning 
 
 This class provides a convenient interface for making requests to the MTN MoMo `sandbox-provisioning-api` API.
@@ -47,7 +47,7 @@ common_headers = {
   "Ocp-Apim-Subscription-Key": "string"
 }
 
-sandboxprovisioningapi = MtnOpenApi::SandboxProvisioningApi.new(
+sandboxprovisioning = MtnOpenApi::SandboxProvisioning.new(
   headers: common_headers
 )
 
@@ -59,7 +59,7 @@ extra_headers = {
   "X-Reference-Id": "string"
 }
 
-response = sandboxprovisioningapi.postV10Apiuser(params, extra_headers)
+response = sandboxprovisioning.postV10Apiuser(params, extra_headers)
 ```
 #### Methods
 - [postV10Apiuser](https://momodeveloper.mtn.com/API-collections#api=sandbox-provisioning-api&operation=post-v1_0-apiuser) Used to create an API user in the sandbox target environment.

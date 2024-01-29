@@ -24,7 +24,7 @@ module MtnOpenApi
     [
       {
         api: 'sandbox-provisioning-api',
-        namespace: "SandboxProvisioningApi",
+        namespace: "SandboxProvisioning",
         content: load_schema("sandbox-provisioning-api")
       },
       {
@@ -42,7 +42,7 @@ module MtnOpenApi
         namespace: "Remittance",
         content: load_schema("remittance")
       }
-    ]
+    ].freeze
   end
 
   def self.load_schema(filename)
