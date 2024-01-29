@@ -14,16 +14,16 @@ Explore seamless integration with MTN Open API using this Ruby gem. For in-depth
 
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add mtn_open_api -v 0.0.1
+    $ bundle add mtn_open_api -v 0.1.1
 
 OR
 ```
-gem 'mtn_open_api', '0.0.1'
+gem 'mtn_open_api', '0.1.1'
 ```
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install mtn_open_api -v 0.0.1
+    $ gem install mtn_open_api -v 0.1.1
 
 ## Usage
 
