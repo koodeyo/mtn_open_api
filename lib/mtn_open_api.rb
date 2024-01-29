@@ -25,28 +25,32 @@ module MtnOpenApi
       {
         api: 'sandbox-provisioning-api',
         namespace: "SandboxProvisioningApi",
-        content: MtnOpenApi.load_schema("sandbox-provisioning-api")
+        content: load_schema("sandbox-provisioning-api")
       },
       {
         api: "collection",
         namespace: 'Collection',
-        content: MtnOpenApi.load_schema("collection")
+        content: load_schema("collection")
       },
       {
         api: "disbursement",
         namespace: "Disbursement",
-        content: MtnOpenApi.load_schema("disbursement")
+        content: load_schema("disbursement")
       },
       {
         api: 'remittance',
         namespace: "Remittance",
-        content: MtnOpenApi.load_schema("remittance")
+        content: load_schema("remittance")
       }
     ]
   end
 
   def self.load_schema(filename)
-    gem_root = Gem::Specification.find_by_name(NAME).gem_dir
+    gem_root = begin
+      Gem::Specification.find_by_name(NAME).gem_dir
+    rescue Gem::LoadError, Gem::MissingSpecError
+    end
+
     yaml_path = File.expand_path("schemas/#{filename}.yaml", gem_root)
     YAML.load(File.read(yaml_path))
   end
